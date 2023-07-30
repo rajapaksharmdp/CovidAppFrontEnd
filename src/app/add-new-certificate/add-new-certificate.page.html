@@ -1,0 +1,853 @@
+<!-- <ion-header class="ion-no-border" fullscreen="true">
+  
+  
+  <ion-toolbar class="head"  >
+    
+    <ion-buttons  slot="start">
+      <ion-back-button text=""   [icon]="" style="color: white;" defaultHref="/home">
+        <ion-icon ios="arrow-back" md="arrow-back"></ion-icon></ion-back-button>
+   </ion-buttons>
+    
+  </ion-toolbar>
+ 
+</ion-header> -->
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+        text=""
+        [icon]=""
+        style="color: white"
+        defaultHref="/home"
+      >
+        <ion-icon ios="arrow-back" md="arrow-back"></ion-icon
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Certificate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  class="has-header ion-padding"
+  style="margin-top: 100px; background-color: #ebebeb !important"
+>
+  <div>
+    <div class="flex justify-content-space-between ion-margin-top relative">
+      <div class="absolute full-width line"></div>
+      <div
+        class="flex flex-column justify-content-center full-width"
+        *ngFor="let slide of slides; let index = index; let first = first; let last = last;"
+      >
+        <span
+          [ngClass]="{ 'align-self-end': last, 'align-self-center': (!first && !last) }"
+          class="flex flex-column align-items-center justify-content-center bold radius"
+          style="width: 30px; height: 30px; font-size: small"
+          [style.background]="slide === currentSlide ? 'var(--ion-color-primary)':'var(--ion-color-light-shade)'"
+          [style.color]="slide === currentSlide ? 'var(--ion-color-light)':'var(--ion-color-dark)'"
+          [ngClass]="{ 'align-self-end': last, 'align-self-center': (!first && !last) }"
+        >
+          {{ index + 1 }}
+        </span>
+        <!-- <span [style.color]="slide === currentSlide ? 'var(--ion-color-primary)':'var(--ion-color-medium)'"
+          [ngClass]="{ 'align-self-end': last, 'align-self-center': (!first && !last) }"
+          class="flex text-medium bold ion-margin-vertical" style="font-size: xx-small;">
+          {{ slide }}
+        </span> -->
+      </div>
+    </div>
+
+    <ion-slides
+      [options]="slidesOpts"
+      (ionSlideDidChange)="onSlidesDidChange()"
+      (ionSlideWillChange)="onSlidesChanged()"
+    >
+      <ng-container *ngFor="let slide of slides">
+        <ion-slide>
+          <div class="full-width ion-text-start">
+            <form
+              [formGroup]="personalForm"
+              #personalFormRef="ngForm"
+              novalidate
+              *ngIf="slide === 'Personal'"
+            >
+              <ion-list-header class="ion-no-padding" style="min-height: auto">
+                <ion-label class="ion-text-center" color="dark">
+                  Personal Details
+                </ion-label>
+              </ion-list-header>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">First name</ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="first_name"
+                      readonly
+                    ></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="FirstName?.errors?.required && personalFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Last name</ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="last_name"
+                      readonly
+                    ></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="LastName?.errors?.required && personalFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">NIC</ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="nic"
+                      readonly
+                    ></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="NIC?.errors?.required && personalFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Date of Birth</ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="dob"
+                      readonly
+                    ></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="DOB?.errors?.required && personalFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Contact number</ion-label>
+                    <ion-input type="text" formControlName="phone"></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="Phone?.errors?.required && personalFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Address line 1</ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="address1"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="Address1?.errors?.required && personalFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Address line 2</ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="address2"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="Address2?.errors?.required && personalFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Town</ion-label>
+                    <ion-input type="text" formControlName="town"></ion-input>
+                    <!-- <ion-input type="text" formControlName="zip" inputmode="numeric"></ion-input> -->
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="Town?.errors?.required && personalFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">District</ion-label>
+                    <ion-input
+                      type="text"
+                      formControlName="district"
+                    ></ion-input>
+                    <!-- <ion-input type="text" formControlName="country_code" placeholder="two-letter code"></ion-input> -->
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="District?.errors?.required && personalFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </form>
+
+            <form
+              [formGroup]="vaccineForm"
+              #vaccineFormRef="ngForm"
+              novalidate
+              *ngIf="slide === 'Vaccine'"
+            >
+              <ion-list-header class="ion-no-padding" style="min-height: auto">
+                <ion-label class="ion-text-center" color="dark">
+                  Vaccine Details
+                </ion-label>
+              </ion-list-header>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item class="item-select" lines="none">
+                    <ion-label position="stacked"
+                      >Dose 1 : Vaccine Name</ion-label
+                    >
+                    <ion-input
+                      type="text"
+                      formControlName="dose1"
+                      readonly
+                    ></ion-input>
+                    <!-- <select class="text-small" formControlName="dose1" disabled=true>
+                      <option [value]="null" disabled selected>
+                        Select vaccine
+                      </option>
+                      <option *ngFor="let item of items" [value]="item">
+                        {{ item }}
+                      </option>
+                    </select> -->
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="vaccineDose1Name?.errors?.required && vaccineFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked"
+                      >Dose 1 : Vaccine Date</ion-label
+                    >
+                    <input type="date" formControlName="Dose1_date" readonly />
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="vaccineDose1Date?.errors?.required && vaccineFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item class="item-select" lines="none">
+                    <ion-label position="stacked"
+                      >Dose 2 : Vaccine Name</ion-label
+                    >
+                    <ion-input
+                      type="text"
+                      formControlName="dose2"
+                      readonly
+                    ></ion-input>
+                    <!-- <select class="text-small" formControlName="dose2">
+                      <option [value]="null" disabled selected>
+                        Select vaccine
+                      </option>
+                      <option *ngFor="let item of items" [value]="item">
+                        {{ item }}
+                      </option>
+                    </select> -->
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="vaccineDose2Name?.errors?.required && vaccineFormRef?.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked"
+                      >Dose 2 : Vaccine Date</ion-label
+                    >
+                    <input type="date" formControlName="Dose2_date" readonly />
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="vaccineDose2Date?.errors?.required && vaccineFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item class="item-select" lines="none">
+                    <ion-label position="stacked"
+                      >Dose 3 : Vaccine Name</ion-label
+                    >
+                    <ion-input
+                      type="text"
+                      formControlName="dose3"
+                      readonly
+                    ></ion-input>
+                    <!-- <select class="text-small" formControlName="dose3">
+                      <option [value]="null" disabled selected>
+                        Select vaccine
+                      </option>
+                      <option *ngFor="let item of items" [value]="item">
+                        {{ item }}
+                      </option>
+                    </select> -->
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="vaccineDose3Name?.errors?.required && vaccineFormRef?.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked"
+                      >Dose 3 : Vaccine Date</ion-label
+                    >
+                    <input type="date" formControlName="Dose3_date" readonly />
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span
+                      class="text-tiny"
+                      [style.visibility]="vaccineDose3Date?.errors?.required && vaccineFormRef.submitted ? '' : 'hidden'"
+                    >
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <div class="flex align-items-center full-width ion-margin-top">
+                <div class="ion-margin-end">
+                  <!-- <h5 class="text-medium bold">Upload image</h5>
+                  <ion-button strong shape="round" color="primary" size="small" (click)="presentActionSheet()">
+                    Select
+                  </ion-button>
+                </div>
+                <div>
+                  <img class="img-thumb" [src]="imagePath" *ngIf="imagePath"> -->
+                </div>
+              </div>
+            </form>
+
+            <div [hidden]="slide !== 'Confirmation'">
+              <ion-list-header class="ion-no-padding" style="min-height: auto">
+                <ion-label class="ion-text-center" color="dark">
+                  Confirmation
+                </ion-label>
+              </ion-list-header>
+
+              <div *ngIf="vaccineForm.valid">
+                <p class="text-medium bold ion-text-uppercase">
+                  Vaccination details
+                </p>
+                <div class="divider"></div>
+
+                <div
+                  *ngFor="let control of vaccineForm.controls | keyvalue: originalOrder"
+                >
+                  <p class="text-medium margin-v-sm">
+                    <span class="bold">
+                      {{ control.key.replace('_', ' ') | titlecase }}:
+                    </span>
+                    {{ control.value.value || '--' }}
+                  </p>
+                </div>
+                <p class="text-medium margin-v-sm" *ngIf="imagePath">
+                  <span class="bold"> Attachment: </span>
+                  <img class="img-thumb" [src]="imagePath" />
+                </p>
+              </div>
+
+              <div *ngIf="personalForm.valid">
+                <div class="divider"></div>
+                <p class="text-medium bold ion-text-uppercase">
+                  Personal details
+                </p>
+                <div class="divider"></div>
+                <p
+                  class="text-medium margin-v-sm"
+                  *ngFor="let control of personalForm.controls | keyvalue: originalOrder"
+                >
+                  <span class="bold">
+                    {{ control.key.replace('_', ' ') | titlecase }}:
+                  </span>
+                  {{ control.value.value || '--' }}
+                </p>
+              </div>
+
+              <!-- <div class="divider"></div>
+              <p class="text-medium bold ion-text-uppercase">Items</p>
+              <div class="divider"></div>
+
+              <ion-list>
+                <ion-item *ngFor="let item of order?.items">
+                  <ion-label>
+                    <h2 class="text-medium bold">{{ item.name }}</h2>
+                  </ion-label>
+                  <div>
+                    <span class="text-medium">{{ item.amount | currency}}</span>
+                  </div>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <h2 class="text-medium bold">Subtotal</h2>
+                  </ion-label>
+                  <div>
+                    <span class="text-medium"
+                      >{{ order?.subtotal | currency}}</span
+                    >
+                  </div>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <h2 class="text-medium bold">Shipping & Handling</h2>
+                  </ion-label>
+                  <div>
+                    <span class="text-medium"
+                      >{{ order?.shippingFee | currency}}</span
+                    >
+                  </div>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <h2 class="text-medium bold">Total</h2>
+                  </ion-label>
+                  <div>
+                    <span class="text-medium bold"
+                      >{{ order?.total | currency}}</span
+                    >
+                  </div>
+                </ion-item>
+              </ion-list> -->
+            </div>
+
+            <form
+              [formGroup]="documentsForm"
+              #vaccineFormRef="ngForm"
+              enctype="multipart/form-data"
+              *ngIf="slide === 'Documents'"
+            >
+              <ion-list-header class="ion-no-padding" style="min-height: auto">
+                <ion-label class="ion-text-center" color="dark">
+                  Documents Upload
+                </ion-label>
+              </ion-list-header>
+
+              <div class="flex align-items-center full-width ion-margin-top">
+                <div class="ion-margin-end">
+                  <h4 class="text-medium bold">Upload images</h4>
+                  <ol>
+                    <li>
+                      <p>Vaccination Card (Front)</p>
+
+                      <!-- <input type="file" id="fileLoader" #fileLoader name="files" title="Load File" hidden />
+                      <ion-toolbar color="secondary">
+                        <ion-buttons>
+                          <button ion-button icon-left (click)="selectImage()">
+                            <ion-icon name="camera"></ion-icon>Select Image
+                          </button>
+                          <button ion-button icon-left (click)="removePic()" [disabled]="uploadImage === null">
+                            <ion-icon name="trash"></ion-icon>Remove
+                          </button>
+                        </ion-buttons>
+                      </ion-toolbar>
+                      <span *ngIf="uploadImage != null">
+                        <img id="checkinImage" [src]="uploadImage" (load)="imageLoaded()" /> 
+                      </span>
+                      <span *ngIf="processing">
+                          <ion-spinner></ion-spinner>
+                          <h1>Processing...</h1>
+                      </span> -->
+
+                      <ion-button
+                        strong
+                        icon-only
+                        clear
+                        color="primary"
+                        size="small"
+                        type="file"
+                        accept="image/*"
+                        (click)="selectImage();reply_click(1)"
+                        id="1"
+                        name="vaccardfront"
+                        [disabled]="this.vcfront"
+                      >
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-button>
+                      <!-- <span *ngIf="uploadImage != null">
+                        <img id="checkinImage" [src]="uploadImage" (load)="imageLoaded()" /> 
+                      </span> -->
+                      {{this.vaccardfront}}
+                    </li>
+                    <li>
+                      <p>Vaccination Card (Back)</p>
+                      <ion-button
+                        strong
+                        icon-only
+                        clear
+                        color="primary"
+                        size="small"
+                        type="file"
+                        accept="image/*"
+                        (click)="selectImage();reply_click(2)"
+                        id="2"
+                        [disabled]="this.vcback"
+                      >
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-button>
+                      {{this.vaccardback}}
+                    </li>
+                    <li>
+                      <p>NIC Card (Front)</p>
+                      <ion-button
+                        strong
+                        icon-only
+                        clear
+                        color="primary"
+                        size="small"
+                        type="file"
+                        accept="image/*"
+                        (click)="selectImage();reply_click(3)"
+                        id="3"
+                        [disabled]="this.nicfront"
+                      >
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-button>
+                      {{this.nicfront}}
+                    </li>
+                    <li>
+                      <p>NIC Card (Back)</p>
+                      <ion-button
+                        strong
+                        icon-only
+                        clear
+                        color="primary"
+                        size="small"
+                        type="file"
+                        accept="image/*"
+                        (click)="selectImage();reply_click(4)"
+                        id="4"
+                        [disabled]="this.nicback"
+                      >
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-button>
+                      {{this.nicback}}
+                    </li>
+                    <li>
+                      <p>Image of Applicant (Recent)</p>
+                      <ion-button
+                        strong
+                        icon-only
+                        clear
+                        color="primary"
+                        size="small"
+                        type="file"
+                        accept="image/*"
+                        (click)="selectImage();reply_click(5)"
+                        id="5"
+                        [disabled]="this.imgphoto"
+                      >
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-button>
+                      {{this.photo}}
+                    </li>
+                  </ol>
+                </div>
+                <div>
+                  <img class="img-thumb" [src]="imagePath" *ngIf="imagePath" />
+                </div>
+              </div>
+            </form>
+
+            <!-- <label for="5">
+              <ion-icon
+                name="camera"
+                size="large"
+                style="background-color: #138C02; padding: 4px;color: white;border-radius: 5px;"
+              ></ion-icon>
+            </label>
+            <input
+              ion-button
+              strong
+              icon-only
+              clear
+              color="primary"
+              size="small"
+              type="file"
+              accept="image/*"
+              (click)="selectImage();reply_click(5);fileInputClick($event)"
+              id="5"
+              style="display: none"
+              
+              formControlName="userphoto"
+            /> -->
+
+            <form
+              [formGroup]="submissionForm"
+              #submissionFormRef="ngForm"
+              novalidate
+              enctype="multipart/form-data"
+              *ngIf="slide === 'Submission'"
+            >
+              <ion-list-header class="ion-no-padding" style="min-height: auto">
+                <ion-label class="ion-text-center"> Submission </ion-label>
+              </ion-list-header>
+
+              <ion-row>
+                <ion-col>
+                  <!-- <ion-item lines="none">
+                    <ion-label position="stacked">Card number</ion-label>
+                    <ion-input type="text" formControlName="number"></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="paymentNumber?.errors?.required && submissionFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text> -->
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item></ion-item>
+                  <br />
+                  <br />
+                  <div>
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                      "
+                    >
+                      <ion-label class="ion-text-center">
+                        &#8226; To continue, you must agree to LKSafe
+                        <a
+                          href="https://www.kln.ac.lk/images/LKSafe_Privacy_Policy.pdf"
+                          >Privacy Policy</a
+                        >.</ion-label
+                      >
+                    </div>
+                    <br />
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                      "
+                    >
+                      <ion-label>I Agree &nbsp;&nbsp;&nbsp;</ion-label>
+                      <ion-checkbox
+                        [checked]="checked"
+                        [(ngModel)]="checked"
+                        [ngModelOptions]="{standalone: true}"
+                        color="primary"
+                        slot="start"
+                      >
+                      </ion-checkbox>
+                    </div>
+                  </div>
+
+                  <ion-item></ion-item>
+                  <!-- <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Expiration</ion-label>
+                    <ion-input type="text" formControlName="expiration"></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="paymentExpiration?.errors?.required && submissionFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col> -->
+
+                  <!-- <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">CVV</ion-label>
+                    <ion-input type="text" formControlName="cvv"></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="paymentCvv?.errors?.required && submissionFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col> -->
+                </ion-col>
+              </ion-row>
+
+              <div class="ion-text-center">
+                <ion-button
+                  type="button"
+                  style="width: 200px"
+                  class="ion-margin-vertical"
+                  strong
+                  shape="round"
+                  color="primary"
+                  (click)="OnSubmit()"
+                  [disabled]="!checked"
+                >
+                  Submit
+                </ion-button>
+              </div>
+
+              <div class="ion-text-center">
+                <ion-button
+                  type="button"
+                  style="width: 200px"
+                  class="ion-margin-vertical"
+                  strong
+                  shape="round"
+                  color="warning"
+                  (click)="onBackButtonTouched()"
+                >
+                  Back
+                </ion-button>
+              </div>
+            </form>
+          </div>
+        </ion-slide>
+      </ng-container>
+    </ion-slides>
+  </div>
+</ion-content>
+
+<!-- <ion-footer no-border text-center>
+    <ion-toolbar>
+      <ion-buttons class="footerbtns">
+        <ion-button [routerLink]="['/home']"  icon-only clear color="success">  <ion-icon style="font-size: 30px;" ios="home-outline" md="home-outline"></ion-icon></ion-button>
+       
+        <ion-button [routerLink]="['/about']" icon-only clear color="success">  <ion-icon style="font-size: 35px;" ios="information-outline" md="information-outline"></ion-icon></ion-button>
+      </ion-buttons>
+  
+    </ion-toolbar>
+  </ion-footer> -->
+
+<ion-footer>
+  <ion-toolbar>
+    <div
+      class="full-width flex align-items-center justify-content-space-between"
+    >
+      <ion-button
+        size="small"
+        style="width: 120px"
+        strong
+        shape="round"
+        color="warning"
+        [style.visibility]="(isBeginning || isEnd) ? 'hidden' : ''"
+        (click)="onBackButtonTouched()"
+      >
+        <span style="font-weight: normal">Back</span>
+        <ion-icon slot="start" name="chevron-back"></ion-icon>
+      </ion-button>
+      <ion-button
+        style="width: 120px"
+        size="small"
+        strong
+        shape="round"
+        color="primary"
+        [style.visibility]="isEnd ? 'hidden' : ''"
+        (click)="onNextButtonTouched()"
+      >
+        <span style="font-weight: normal">Next</span>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

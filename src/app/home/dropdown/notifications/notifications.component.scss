@@ -1,0 +1,48 @@
+ion-list {  
+    &.list-ios {  
+        margin-bottom: 0;  
+    }  
+}  
+
+.button:before{
+    margin: 0 5px;
+  }
+
+  ::ng-deep {
+    .alert-wrapper {
+      .alert-button:first-child {
+        color: white;
+        background-color: #17a502 !important;
+        border-radius: 5px;
+        width: 25%;
+        text-align: center;
+      }
+    }
+    .alert-wrapper {
+      .alert-button:nth-child(2) {
+        color: white;
+        background-color: red !important;
+        border-radius: 5px;
+        // width: 30%;
+        text-align: center;
+      }
+    }
+    .alert-wrapper {
+      .alert-button-inner {
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+    }
+    .alert-wrapper {
+      .alert-title {
+        text-align: center;
+      }
+      .alert-sub-title {
+        text-align: center;
+      }
+      .alert-message {
+        text-align: center;
+      }
+    }
+  }

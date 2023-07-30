@@ -1,20 +1,44 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-chip (click)="notifications($event)">
+        <ion-avatar>
+          <img src="../../assets/images/user.png">
+        </ion-avatar>
+        <ion-label>Hi, {{this.userName}}</ion-label>
+        <!-- <ion-icon name="menu-outline"></ion-icon> -->
+      </ion-chip>
+     
+    </ion-buttons>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="content">
+  <ion-card class="ion-no-margin">
+    <ion-img src="assets/images/header.svg"></ion-img>
+    <ion-card-header>
+      <ion-card-title>
+        Digital COVID Certificate
+      </ion-card-title>
+    </ion-card-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+    <ion-card-content >
+      <div class="signin-btns">
+        <ion-button size="medium" fill="solid" shape="round" class="login-btns" (click)="navigate()">Verify Me </ion-button>
+       
+      </div>
+      <div class="signin-btns" >
+        <ion-button *ngIf="this.userRole !=='user'" size="medium" fill="solid" shape="round" class="login-btns" [routerLink]="['/verifycertificate']">Scan Me </ion-button>
+      </div>
+    </ion-card-content>
+
+    <ion-card-subtitle>
+     
+      POWERED BY UNIVERSITY OF KELANIYA SRI LANKA
+    </ion-card-subtitle>
+
+  </ion-card>
+  </ion-content>
+
+

@@ -1,0 +1,185 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+        text=""
+        [icon]=""
+        style="color: white"
+        defaultHref="/scan"
+      >
+        <ion-icon ios="arrow-back" md="arrow-back"></ion-icon
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Certificate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  padding
+  class="card-background-page"
+  style="background-color: #ebebeb !important"
+>
+  <ion-card class="ion-no-margin" style="margin: 10px; margin-top: 70px">
+    <ion-img
+      *ngIf="!this.dose1only &&  !this.dose1and2only"
+      src="assets/images/report.svg"
+    ></ion-img>
+    <ion-img
+      *ngIf="!this.dose1only && this.dose1and2only"
+      src="assets/images/report1.svg"
+    ></ion-img>
+    <ion-img
+      *ngIf="this.dose1only &&  !this.dose1and2only"
+      src="assets/images/report2.svg"
+    ></ion-img>
+
+    <div class="card-title">
+      <ion-avatar style="width: 128px; height: 128px; margin: auto">
+        <img
+          src="https://setuinfo.kln.ac.lk/files/{{this.userData.userimg_filename}}"
+        />
+      </ion-avatar>
+    </div>
+
+    <div class="card-subtitle">
+      <h2 style="margin-bottom: 0">
+        {{this.userData.first_name}}&nbsp;{{this.userData.last_name}}
+      </h2>
+      <h3 style="margin-top: 0">{{this.userData.nic}}</h3>
+    </div>
+
+    <!-- <div class="card-qr" style="width: 64px;height: 64px;">
+      <ngx-qrcode [value]="createdCode"></ngx-qrcode>
+    
+     </div> -->
+
+    <h2>Vaccine Details</h2>
+    <hr class="hr" />
+    <div
+      style="
+        text-align: start;
+        margin: 0 5% 0 5%;
+        display: flex;
+        justify-content: space-between;
+      "
+    >
+      <h3>Dose 1:&nbsp;<strong>{{this.userData.dose1}}</strong></h3>
+      <h3>Date :&nbsp;<strong>{{this.userData.Dose1_date}}</strong></h3>
+    </div>
+    <div
+      style="
+        text-align: start;
+        margin: 0 5% 0 5%;
+        display: flex;
+        justify-content: space-between;
+      "
+    >
+      <h3>Dose 2:&nbsp;<strong>{{this.userData.dose2}}</strong></h3>
+      <h3>Date :&nbsp;<strong>{{this.userData.Dose2_date}}</strong></h3>
+    </div>
+    <div
+      style="
+        text-align: start;
+        margin: 0 5% 0 5%;
+        display: flex;
+        justify-content: space-between;
+      "
+    >
+      <h3>Dose 3:&nbsp;<strong>{{this.userData.dose3}}</strong></h3>
+      <h3>Date :&nbsp;<strong>{{this.userData.Dose3_date}}</strong></h3>
+    </div>
+
+    <ion-card-subtitle style="margin: 0">
+      POWERED BY UNIVERSITY OF KELANIYA SRI LANKA
+    </ion-card-subtitle>
+  </ion-card>
+</ion-content>
+
+<ion-footer no-border text-center>
+  <ion-toolbar>
+    <ion-buttons class="footerbtns">
+      <ion-button [routerLink]="['/scan']" icon-only clear color="success"
+        ><ion-icon
+          style="font-size: 40px"
+          ios="arrow-back-circle-outline"
+          md="arrow-back-circle-outline"
+        ></ion-icon
+      ></ion-button>
+      <ion-button [routerLink]="['/home']" icon-only clear color="success">
+        <ion-icon
+          style="font-size: 30px"
+          ios="home-outline"
+          md="home-outline"
+        ></ion-icon
+      ></ion-button>
+
+      <ion-button [routerLink]="['/about']" icon-only clear color="success">
+        <ion-icon
+          style="font-size: 35px"
+          ios="information-outline"
+          md="information-outline"
+        ></ion-icon
+      ></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
+
+<!-- <ion-header class="ion-no-border" fullscreen="true">
+  
+  
+  <ion-toolbar class="head"  >
+    
+    <ion-buttons  slot="start">
+      <ion-back-button text=""   [icon]="" style="color: white;" defaultHref="/home">
+        <ion-icon ios="arrow-back" md="arrow-back"></ion-icon></ion-back-button>
+   </ion-buttons>
+    
+  </ion-toolbar>
+ 
+</ion-header>
+
+<ion-content style="background-color: #EBEBEB !important;" [fullscreen]="true" >
+  <ion-card class="content" >
+    
+    <ion-card-header>
+    
+      <ion-card-title  style="display: flex; align-items: center;justify-content: center;">
+       <h3>Digital COVID Certificate</h3>
+      
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div id="container" *ngIf="dataFound">
+     
+        
+        <ul>
+        
+          <li><strong>Name : </strong>{{this.qrData.name}}</li>
+          <li><strong>NIC : </strong>{{this.decrypednic}}</li>
+          <li><strong>Date of birth : </strong>{{this.qrData.dob}}</li>
+          <li><strong>Address : </strong>{{this.qrData.address}}</li>
+         
+
+        </ul>
+      </div>
+    </ion-card-content>
+
+    <ion-card-subtitle>
+      
+    </ion-card-subtitle>
+
+  </ion-card>
+  </ion-content>
+  
+  <ion-footer no-border text-center>
+    <ion-toolbar>
+      <ion-buttons class="footerbtns">
+        <ion-button [routerLink]="['/home']"  icon-only clear color="success">  <ion-icon style="font-size: 30px;" ios="home-outline" md="home-outline"></ion-icon></ion-button>
+        <ion-button  [routerLink]="['/addnewcertificate']"  icon-only clear color="success"><ion-icon style="font-size: 40px;"  ios="add-circle-outline" md="add-circle-outline"></ion-icon></ion-button>
+        <ion-button [routerLink]="['/about']" icon-only clear color="success">  <ion-icon style="font-size: 35px;" ios="information-outline" md="information-outline"></ion-icon></ion-button>
+      </ion-buttons>
+  
+    </ion-toolbar>
+  </ion-footer>
+ -->

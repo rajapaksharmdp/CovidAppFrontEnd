@@ -1,0 +1,179 @@
+ion-content{
+    --ion-background-color: #EBEBEB !important;
+    --offset-bottom: auto!important;
+    --overflow: hidden;
+    overflow: auto;
+    --ion-background-color: #EBEBEB !important;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  
+  }
+  .content{
+      background-color: #EBEBEB;
+      
+  }
+  
+  // ion-toolbar{
+  //     --ion-background-color: transparent;
+  //     --opacity:0;
+  // }
+  
+  ion-header{
+      position: absolute;
+  }
+  
+  ion-card{
+    //   --ion-background-color: transparent;
+    // --background: url('../../assets/images/bg.jpg') no-repeat center center/cover; 
+      box-shadow: none !important;
+      margin-top: 100px;
+      background-color: white;
+  }
+  
+  ion-card-title{
+      // margin-top: 10px;
+      font-size: 20px;
+      font-weight: 500;
+      text-align: center;
+  }
+  
+  ion-card-subtitle{
+      text-align: center;
+      font-size: xx-small;
+      margin-top: 30%;
+  }
+  
+  .signin-btns{
+      margin-top: 25px;
+      text-align: center;
+      
+  }
+  
+  .login-btns{
+      --ion-color-primary:#17A502;
+      margin-top: 15px;
+  }
+  
+  .divider {
+      display: flex;
+      
+      &:before,
+      &:after {
+        content: "";
+        flex: 1;
+      }
+    }
+    
+    .line {
+      align-items: center;
+      margin: 1em -1em;
+      color: #cccccc;
+      
+      &:before,
+      &:after {
+        height: 1px;
+        margin: 0 1em;
+      }
+    } 
+    
+    .one-line {
+      &:before,
+      &:after {
+         background: #cccccc;
+      }
+    }
+    
+    .auth-form ion-grid,
+    .auth-form ion-row {
+      height: 100%;
+      justify-content: center;
+    }
+    
+    .already {
+      display: block;
+      text-align: center;
+      padding-bottom: 10px;
+    }
+  
+
+    .card-background-page {
+
+        ion-card {
+          position: relative;
+          text-align: center;
+        }
+
+        .card-title {
+          position: absolute;
+          top: 25%;
+          font-size: 2.0em;
+          width: 100%;
+          font-weight: bold;
+          color: black;
+          align-items: center;
+        }
+
+        .card-subtitle {
+          font-size: 1.0em;
+          position: absolute;
+          top: 50%;
+          width: 100%;
+          color: black;
+        }
+
+        .card-qr {
+            font-size: 1.0em;
+            position: absolute;
+            top: 70%;
+            width: 100%;
+            color: black;
+          }
+
+      }
+    
+      .footerbtns {
+        justify-content: space-between;
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+  
+
+      ::ng-deep {
+        .alert-wrapper {
+          .alert-button:first-child {
+            color: white;
+            background-color: #17a502 !important;
+            border-radius: 5px;
+            width: 25%;
+            text-align: center;
+          }
+        }
+        .alert-wrapper {
+          .alert-button:nth-child(2) {
+            color: white;
+            background-color: red !important;
+            border-radius: 5px;
+            // width: 30%;
+            text-align: center;
+          }
+        }
+        .alert-wrapper {
+          .alert-button-inner {
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+          }
+        }
+        .alert-wrapper {
+          .alert-title {
+            text-align: center;
+          }
+          .alert-sub-title {
+            text-align: center;
+          }
+          .alert-message {
+            text-align: center;
+          }
+        }
+      }

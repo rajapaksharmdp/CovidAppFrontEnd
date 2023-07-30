@@ -1,0 +1,159 @@
+<ion-header class="ion-no-border" fullscreen="true">
+  <ion-toolbar class="head">
+    <ion-buttons slot="start">
+      <ion-back-button
+        text=""
+        [icon]=""
+        style="color: white"
+        defaultHref="/home"
+      >
+        <ion-icon ios="arrow-back" md="arrow-back"></ion-icon
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <!-- <ion-img src="assets/images/head.png">
+  </ion-img> -->
+</ion-header>
+
+<ion-content style="background-color: #ebebeb !important; " [fullscreen]="true">
+  <ion-card class="content">
+    <ion-card-header>
+      <ion-card-title>
+        <div>
+          <ion-item lines="full">
+            <ion-label
+              style="text-align: center; color: #707070; font-weight: 500"
+              >My Certificates</ion-label
+            >
+          </ion-item>
+        </div>
+        <div>
+          <ion-list>
+            <!-- <ion-list-header>
+            Employee List
+          </ion-list-header> -->
+
+            <ion-virtual-scroll [items]="this.finaldata ">
+              <ion-item *virtualItem="let item">
+                <ion-avatar style="width: 70px; height: 70px" slot="start">
+                  <img src='https://setuinfo.kln.ac.lk/files/{{item.userimg_filename}}' />
+                </ion-avatar>
+                <ion-label>
+                  <h2 style="margin: 0">
+                    {{item.first_name}}&nbsp;{{item.last_name}}
+                  </h2>
+                  <h3 style="margin: 0">
+                    {{item.nic}}<button
+                      ion-button
+                      icon-only
+                      clear
+                      style="
+                        float: right;
+                        background-color: #ffffff;
+                        margin-left: 15px;
+                        border: rgb(186, 189, 196) solid 1px;
+                        border-radius: 50px;
+                        
+                      "
+                      (click) ="viewcertificate(item._id)"
+                    >
+                      <ion-icon
+                        style="color: royalblue; font-size: 20px"
+                        name="eye-outline"
+                      ></ion-icon></button
+                    ><button
+                      ion-button
+                      icon-only
+                      style="
+                        float: right;
+                        background-color: #ffffff;
+                        margin-left: 15px;
+                        border: rgb(186, 189, 196) solid 1px;
+                        border-radius: 50px;
+                      "
+                      clear
+                      (click)="presentAlertConfirm(item._id)"
+                    >
+                      <ion-icon
+                        style="float: right; color: red; font-size: 20px"
+                        name="trash-outline"
+                      ></ion-icon>
+                    </button>
+                  </h3>
+                  <ion-chip
+                    style="
+                      height: 20px;
+                      font-size: 12px;
+                      background-color: cornflowerblue;
+                    "
+                    *ngIf="item.primarynic === item.nic"
+                  >
+                    <ion-label>Default</ion-label>
+                  </ion-chip>
+                  <ion-chip
+                    style="
+                      height: 20px;
+                      font-size: 12px;
+                      background-color: rgb(223, 201, 4);
+                    "
+                  >
+                    <ion-label>verified</ion-label>
+                  </ion-chip>
+                </ion-label>
+              </ion-item>
+            </ion-virtual-scroll>
+          </ion-list>
+
+          <ion-infinite-scroll
+            threshold="100px"
+            (ionInfinite)="loadData($event)"
+          >
+            <ion-infinite-scroll-content
+              loadingSpinner="bubbles"
+              loadingText="Loading more data..."
+            >
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        </div>
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div id="container"></div>
+    </ion-card-content>
+
+    <ion-card-subtitle> </ion-card-subtitle>
+  </ion-card>
+</ion-content>
+
+<ion-footer no-border text-center>
+  <ion-toolbar>
+    <ion-buttons class="footerbtns">
+      <ion-button [routerLink]="['/home']" icon-only clear color="success">
+        <ion-icon
+          style="font-size: 30px"
+          ios="home-outline"
+          md="home-outline"
+        ></ion-icon
+      ></ion-button>
+      <ion-button
+        [routerLink]="['/nicverify']"
+        icon-only
+        clear
+        color="success"
+        ><ion-icon
+          style="font-size: 40px"
+          ios="add-circle-outline"
+          md="add-circle-outline"
+        ></ion-icon
+      ></ion-button>
+      <ion-button [routerLink]="['/about']" icon-only clear color="success">
+        <ion-icon
+          style="font-size: 35px"
+          ios="information-outline"
+          md="information-outline"
+        ></ion-icon
+      ></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

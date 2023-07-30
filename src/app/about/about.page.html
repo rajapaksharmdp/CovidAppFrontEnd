@@ -1,0 +1,73 @@
+<ion-header class="ion-no-border" fullscreen="true">
+  
+  
+  <ion-toolbar class="head" >
+    
+    <ion-buttons  slot="start">
+      <ion-back-button text=""   [icon]="" style="color: white;" defaultHref="/home">
+        <ion-icon ios="arrow-back" md="arrow-back"></ion-icon></ion-back-button>
+   </ion-buttons>
+    
+  </ion-toolbar>
+  <!-- <ion-img src="assets/images/head.png">
+  </ion-img> -->
+</ion-header>
+
+
+<ion-content style="background-color: #EBEBEB !important;" >
+  <ion-card class="content" >
+    
+    <ion-card-header>
+    
+      <ion-card-title  style="display: flex; align-items: center;justify-content: center;">
+        <ion-img class="img1"  src="assets/images/uok.png"></ion-img>
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div style="margin: 10px;">Provider <br>
+        <strong>
+          University of Kelaniya, Sri Lanka <br>
+        </strong></div>
+     
+        <div style="margin: 10px;">
+          Category <br>
+          <strong>
+            Health Care <br>
+          </strong>
+        </div>
+
+      <div style="margin: 10px;">
+        About
+      <p class="pstyle">
+        LKSafe is the Covid-19 Vaccination pass app to facilitate
+the people to carry their Digital Covid Vaccination
+Certificate. The app will allow to users to generate and
+verify Digital Covid Certificate. Using the QR Code, the
+Certificate can be verified instantaneously.</p>
+      </div>
+      <div>
+        <div class="signin-btns">
+          <ion-button size="medium" fill="solid" shape="round" class="back-btn" [routerLink]="['/home']">Back</ion-button>
+        </div>
+      </div>
+    </ion-card-content>
+
+    <!-- <ion-card-subtitle>
+      
+    </ion-card-subtitle> -->
+
+  </ion-card>
+  </ion-content>
+
+  <ion-footer no-border text-center>
+    <ion-toolbar>
+      <ion-buttons class="footerbtns">
+        <ion-button [routerLink]="['/home']" icon-only clear color="success">  <ion-icon style="font-size: 30px;" ios="home-outline" md="home-outline"></ion-icon></ion-button>
+        <!-- <ion-button  icon-only clear color="success"><ion-icon style="font-size: 40px;"  ios="add-circle-outline" md="add-circle-outline"></ion-icon></ion-button> -->
+        <ion-button [routerLink]="['/about']" icon-only clear color="success">  <ion-icon style="font-size: 35px;" ios="information-outline" md="information-outline"></ion-icon></ion-button>
+      </ion-buttons>
+  
+    </ion-toolbar>
+  </ion-footer>
+

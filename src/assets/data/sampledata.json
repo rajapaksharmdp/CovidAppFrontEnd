@@ -1,0 +1,38 @@
+[
+  {
+      "id": 1,
+    "nic": "OTQyNDAyMjI4Vg==",
+    "name": "T.L.YAsarathna",
+    "dob": 76,
+    "address": "Anuradhapura",
+    "phone": "0705850571",
+    "vaccine ": {
+      "dose1": {
+        "name": "sinopharm",
+        "date": "2021/06/27"
+      },
+      "dose2": {
+        "name": "sinopharm",
+        "date": "2021/07/27"
+      }
+    }
+  },
+  {
+      "id":2,
+    "nic": "01234567895",
+    "name": "Gaming DDR5 RAM 16GB",
+    "dob": 76,
+    "address": "Gaming DDR5 RAM 16GB PC-128000 For x64 PC",
+    "phone": "0705850571",
+    "vaccine ": {
+      "dose1": {
+        "name": "sinopharm",
+        "date": "2021/06/27"
+      },
+      "dose2": {
+        "name": "sinopharm",
+        "date": "2021/07/27"
+      }
+    }
+  }
+]

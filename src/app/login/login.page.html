@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+        text=""
+        [icon]=""
+        style="color: white"
+        defaultHref="/welcome"
+      >
+        <ion-icon ios="arrow-back" md="arrow-back"></ion-icon
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sign In</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content">
+  <ion-card class="ion-no-margin">
+    <ion-img src="assets/images/header.svg"></ion-img>
+    <ion-card-header>
+      <ion-card-title> Digital COVID Certificate </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content color="primary" padding justify-content-center>
+      <form [formGroup]="credentialsForm" (ngSubmit)="onSubmit()">
+        <ion-row color="primary" style="justify-content: center">
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+            <div style="text-align: center; color: #17a502">
+              <h2>Login</h2>
+            </div>
+            <div padding>
+              <ion-item>
+                <ion-input
+                  name="nic"
+                  pattern="([0-9]{9}[x|v]|[0-9]{12}|[0-9 ]{10}[x|v])"
+                  type="text"
+                  placeholder="NIC number (v/x must lowercase)"
+                 
+                  formControlName="nic"
+                  required
+                ></ion-input>
+              </ion-item>
+              <ion-item style="margin-top: 10px">
+                <ion-input
+                  name="password"
+                  maxlength="4"
+                  inputmode="numeric"
+                  type="password"
+                  placeholder="4 Digit Pin Number"
+                  formControlName="password"
+                  required
+                ></ion-input>
+              </ion-item>
+            </div>
+            <div padding style="text-align: center">
+              <ion-button
+                class="login-btns"
+                type="submit"
+                [disabled]="!credentialsForm.valid"
+                expand="block"
+                >SignIn</ion-button
+              >
+              <br />
+              <a [routerLink]="['/forgot-password']" class="small-text"
+                >Forgot Pin?</a
+              >
+            </div>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-card-content>
+
+    <ion-card-subtitle style="margin-top: 10px">
+      <br />
+      POWERED BY UNIVERSITY OF KELANIYA SRI LANKA
+    </ion-card-subtitle>
+  </ion-card>
+</ion-content>

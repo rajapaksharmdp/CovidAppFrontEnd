@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+        text=""
+        [icon]=""
+        style="color: white"
+        defaultHref="/scan"
+        (click)="dismiss()"
+      >
+        <ion-icon ios="arrow-back" md="arrow-back"></ion-icon
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Certificate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  padding
+  class="card-background-page"
+  style="background-color: #ebebeb !important; margin-left: 8px"
+>
+  <div>
+    <ion-card class="ion-no-margin" style="margin: 10px; margin-top: 70px">
+      <div id="printpdf">
+        <ion-img
+          style="margin-left: 5vw; width: 94% !important"
+          *ngIf="!this.dose1only &&  !this.dose1and2only"
+          src="assets/images/bgfull.svg"
+        ></ion-img>
+        <ion-img
+          style="margin-left: 5vw; width: 94% !important"
+          *ngIf="this.dose1only &&  !this.dose1and2only"
+          src="assets/images/bgone.svg"
+        ></ion-img>
+        <ion-img
+          style="margin-left: 5vw; width: 94% !important"
+          *ngIf="!this.dose1only && this.dose1and2only"
+          src="assets/images/bgtwo.svg"
+        ></ion-img>
+
+        <div class="card-title">
+          <ion-avatar style="width: 128px; height: 128px; margin: auto">
+            <img
+              src="https://setuinfo.kln.ac.lk/files/{{this.data.userimg_filename}}"
+            />
+          </ion-avatar>
+        </div>
+
+        <div class="card-subtitle">
+          <h2 style="margin-bottom: 0">
+            {{this.data.first_name}}&nbsp;{{this.data.last_name}}
+          </h2>
+          <h3 style="margin-top: 0">{{this.data.nic}}</h3>
+          <h5 style="margin-bottom: 0; padding-bottom: 0">scan & verify me</h5>
+          <ngx-qrcode
+            [elementType]="elementType"
+            [value]="test"
+            cssClass="aclass"
+          >
+          </ngx-qrcode>
+          <!-- errorCorrectionLevel="H" -->
+        </div>
+
+        <!-- <div class="card-qr" style="width: 64px;height: 64px;">
+      <ngx-qrcode [value]="createdCode"></ngx-qrcode>
+    
+     </div> -->
+
+        <ion-card-subtitle style="margin: 0">
+          POWERED BY UNIVERSITY OF KELANIYA SRI LANKA</ion-card-subtitle
+        >
+      </div>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-footer no-border text-center>
+  <ion-toolbar>
+    <ion-buttons class="footerbtns">
+      <ion-button [routerLink]="['/scan']" icon-only clear color="success"
+        ><ion-icon
+          style="font-size: 40px"
+          ios="arrow-back-circle-outline"
+          md="arrow-back-circle-outline"
+        ></ion-icon
+      ></ion-button>
+      <ion-button [routerLink]="['/home']" icon-only clear color="success">
+        <ion-icon
+          style="font-size: 30px"
+          ios="home-outline"
+          md="home-outline"
+        ></ion-icon
+      ></ion-button>
+
+      <ion-button
+        (click)="presentAlertConfirm()"
+        icon-only
+        clear
+        color="success"
+      >
+        <ion-icon
+          style="font-size: 35px"
+          ios="save-outline"
+          md="save-outline"
+        ></ion-icon
+      ></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
