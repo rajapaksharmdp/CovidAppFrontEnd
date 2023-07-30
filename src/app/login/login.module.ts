@@ -9,12 +9,12 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
-  {
-    path: '/login',
-    component: LoginPage
-  }
-];
+// const routes: Routes = [
+//   {
+//     path: '/login',
+//     component: LoginPage
+//   }
+// ];
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ const routes: Routes = [
     IonicModule,
     LoginPageRoutingModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    // RouterModule.forChild(routes)
   ],
   declarations: [LoginPage]
 })

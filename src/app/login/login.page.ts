@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  credentialsForm: FormGroup;
+  credentialsForm!: FormGroup;
 
   constructor(
     private router: Router,

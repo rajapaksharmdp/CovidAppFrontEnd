@@ -1,6 +1,4 @@
 import { FormsModule } from '@angular/forms';
-import { LoginPage } from './login/login.page';
-import { LoginPageModule } from './login/login.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
@@ -12,7 +10,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ZBar } from '@ionic-native/zbar/ngx';
-import { DataService } from './services/data.service';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 
@@ -25,16 +22,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 import { NotificationsComponent } from './home/dropdown/notifications/notifications.component';
 import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
-import { CertificatesPageModule } from './certificates/certificates.module';
-import { ForgotPasswordPageModule } from './forgot-password/forgot-password.module';
-import { HomePageModule } from './home/home.module';
-import { NicVerificationPageModule } from './nic-verification/nic-verification.module';
-import { RegistrationPageModule } from './registration/registration.module';
-import { SettingsPageModule } from './settings/settings.module';
-import { VerifyCertificatePageModule } from './verify-certificate/verify-certificate.module';
-import { WelcomePageModule } from './welcome/welcome.module';
 
-export function jwtOptionsFactory(storage) {
+export function jwtOptionsFactory(storage:any) {
   return {
     tokenGetter: () => {
       return storage.get('access_token');
@@ -58,7 +47,7 @@ export function jwtOptionsFactory(storage) {
 
 @NgModule({
   declarations: [AppComponent, NotificationsComponent],
-  entryComponents: [NotificationsComponent],
+  
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

@@ -9,12 +9,12 @@ import { RegistrationPageRoutingModule } from './registration-routing.module';
 import { RegistrationPage } from './registration.page';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
-  {
-    path: '/registration',
-    component: RegistrationPage
-  }
-];
+// const routes: Routes = [
+//   {
+//     path: '/registration',
+//     component: RegistrationPage
+//   }
+// ];
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ const routes: Routes = [
     IonicModule,
     RegistrationPageRoutingModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    // RouterModule.forChild(routes)
   ],
   declarations: [RegistrationPage]
 })
