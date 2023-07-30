@@ -9,12 +9,12 @@ import { SettingsPageRoutingModule } from './settings-routing.module';
 import { SettingsPage } from './settings.page';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
-  {
-    path: '/settings',
-    component: SettingsPage
-  }
-];
+// const routes: Routes = [
+//   {
+//     path: '/settings',
+//     component: SettingsPage
+//   }
+// ];
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ const routes: Routes = [
     IonicModule,
     SettingsPageRoutingModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    // RouterModule.forChild(routes)
   ],
   declarations: [SettingsPage]
 })

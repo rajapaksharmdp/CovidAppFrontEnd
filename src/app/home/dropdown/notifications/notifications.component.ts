@@ -41,7 +41,7 @@ export class NotificationsComponent implements OnInit {
       cssClass: 'my-custom-class',
       header: 'Delete Certificate',
       message:
-        '<ion-icon  class="custom-icon-warn"  name="log-out-outline"></ion-icon> <br> <h2>Are you sure you want to signout?</h2>',
+        'Are you sure you want to signout?',
       buttons: [
         {
           text: 'No',
