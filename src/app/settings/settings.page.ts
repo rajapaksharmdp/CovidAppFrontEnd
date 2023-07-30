@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  credentialsForm: FormGroup;
+  credentialsForm!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,

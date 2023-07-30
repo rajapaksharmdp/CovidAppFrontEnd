@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AlertController, Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 // const baseUrl = 'http://localhost:5000';
@@ -17,12 +17,24 @@ const _USER_Name = 'user_name';
 const _USER_ROLE = 'user_role';
 const _USER_NIC ='user_nic'
 
+interface ApiResponse {
+  token: string;
+  
+}
+
+interface User {
+  name: string;
+  role: string;
+  nic: string;
+
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   url = baseUrl;
-  user = null;
+  user: User | null = null;
   authenticationState = new BehaviorSubject(false);
 
   constructor(
@@ -54,7 +66,7 @@ export class AuthService {
     });
   }
  
-  register(credentials) {
+  register(credentials:any) {
     return this.http.post(`${this.url}/register`, credentials).pipe(
       catchError(e => {
         this.showAlert(e.error.msg);
@@ -63,23 +75,28 @@ export class AuthService {
     );
   }
  
-  login(credentials) {
-    return this.http.post(`${this.url}/login`, credentials)
-      .pipe(
-        tap(res => {
-          this.storage.set(TOKEN_KEY, res['token']);
-          this.user = this.helper.decodeToken(res['token']);
-          // console.log(`this.user`, this.user.name)
-          this.storage.set(_USER_Name,this.user.name);
-          this.storage.set(_USER_ROLE, this.user.role);
-          this.storage.set(_USER_NIC, this.user.nic);
+  login(credentials: any) {
+    return this.http.post<ApiResponse>(`${this.url}/login`, credentials).pipe(
+      tap((res: ApiResponse) => {
+        if (res && res.token) {
+          this.storage.set(TOKEN_KEY, res.token);
+          this.user = this.helper.decodeToken<User>(res.token);
+          if (this.user) {
+            this.storage.set(_USER_Name, this.user.name);
+            this.storage.set(_USER_ROLE, this.user.role);
+            this.storage.set(_USER_NIC, this.user.nic);
+          }
           this.authenticationState.next(true);
-        }),
-        catchError(e => {
-          this.showAlert(e.error.msg);
-          throw new Error(e);
-        })
-      );
+        } else {
+          // Handle the case when the response does not contain a token
+          throw new Error('Invalid response: Token not found.');
+        }
+      }),      
+      catchError((e: any) => {
+        this.showAlert(e.error.msg);
+        return throwError(e);
+      })
+    );
   }
  
   logout() {
@@ -107,7 +124,7 @@ export class AuthService {
     return this.authenticationState.value;
   }
  
-  showAlert(msg) {
+  showAlert(msg: string) {
     let alert = this.alertController.create({
       message: msg,
       header: 'Error',

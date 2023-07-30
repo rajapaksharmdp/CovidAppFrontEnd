@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./registration.page.scss'],
 })
 export class RegistrationPage implements OnInit {
-  credentialsForm: FormGroup;
+  credentialsForm!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,

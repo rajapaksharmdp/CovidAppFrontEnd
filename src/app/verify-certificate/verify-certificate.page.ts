@@ -17,8 +17,8 @@ export class VerifyCertificatePage {
   scannedOutput: any;
   qrData: any;
   details: any;
-  dataFound: boolean;
-  message: string;
+  dataFound!: boolean;
+  message!: string;
 
   dose1only = false;
   dose1and2only = false;

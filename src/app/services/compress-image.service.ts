@@ -17,7 +17,7 @@ export class CompressImageService {
     const reader = new FileReader()
     reader.readAsDataURL(file)
 
-    return Observable.create(observer => {
+    return Observable.create((observer: { next: (arg0: File) => void; error: (arg0: ProgressEvent<FileReader>) => any }) => {
       // This event is triggered each time the reading operation is successfully completed.
       reader.onload = ev => {
         // Create an html image element
@@ -42,7 +42,7 @@ export class CompressImageService {
             // callback, called when blob created
             blob => { 
               observer.next(new File(
-                [blob],
+                [blob!],
                 file.name,
                 {
                   type: imageType,
@@ -61,7 +61,7 @@ export class CompressImageService {
     })
   }
 
-  private createImage(ev) {
+  private createImage(ev:any) {
     let imageContent = ev.target.result
     const img = new Image()
     img.src = imageContent

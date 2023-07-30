@@ -4,11 +4,11 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap,map } from 'rxjs/operators';
 
 export class Person {
-  id: string;
-  name: string;
-  nic: string;
-  dob: number;
-  address: string;
+  id!: string;
+  name!: string;
+  nic!: string;
+  dob!: number;
+  address!: string;
 }
 
 @Injectable({
