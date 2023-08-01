@@ -66,7 +66,7 @@ export class NotificationsComponent implements OnInit {
   }
 
   add(){
-    this.router.navigate(['/nicverify']);
+    this.router.navigate(['/addnewuser']);
     this.popoverCtrl.dismiss();
   }
 

@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
@@ -22,6 +22,10 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 import { NotificationsComponent } from './home/dropdown/notifications/notifications.component';
 import { PDFGenerator } from '@ionic-native/pdf-generator/ngx';
+import { ScanPageModule } from './scan/scan.module';
+import { AddNewUserModule } from './add-new-user/add-new-user.module';
+import { ShowUserPageModule } from './show-users/show-users.module';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 export function jwtOptionsFactory(storage:any) {
   return {
@@ -57,6 +61,10 @@ export function jwtOptionsFactory(storage:any) {
     HttpClientModule,
     IonicStorageModule.forRoot(),
     RouterModule,
+    ScanPageModule,
+    AddNewUserModule,
+    ShowUserPageModule,
+    ReactiveFormsModule,
     // CertificatesPageModule,
     // ForgotPasswordPageModule,
     // HomePageModule,
@@ -84,6 +92,7 @@ export function jwtOptionsFactory(storage:any) {
     StatusBar,
     Storage,
     PDFGenerator,
+    BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],

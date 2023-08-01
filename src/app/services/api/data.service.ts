@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-// const baseUrl = 'http://localhost:5000/data';
+const baseUrl = 'http://localhost:5000/data';
 // const baseUrl = 'https://lk-safe.herokuapp.com/data';
-const baseUrl = 'https://setuinfo.kln.ac.lk/data'
+// const baseUrl = 'https://setuinfo.kln.ac.lk/data'
 
 
 @Injectable({

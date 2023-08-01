@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth/auth.service';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-registration',
@@ -38,15 +39,17 @@ export class RegistrationPage implements OnInit {
   }
 
   register() {
-    this.authService.register(this.credentialsForm.value).subscribe((res) => {
-      // Call Login to automatically login the new user
-      this.presentToast();
-      this.router.navigate(['/login']);
-    },(error) => {
-      // console.log('Error in file upload', JSON.stringify(error));
-      this.errorToast();
-    }
-    );
+    this.authService.register(this.credentialsForm.value).subscribe({
+      next: (res) => {
+        // Call Login to automatically login the new user
+        this.presentToast();
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        // console.log('Error in file upload', JSON.stringify(error));
+        this.errorToast();
+      }
+    });
   }
 
   async presentToast() {

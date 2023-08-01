@@ -1,5 +1,7 @@
 {
   "name": "CovidAppFrontEnd",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AddNewUserComponent } from './add-new-user/add-new-user.component';
+import { ShowUsersComponent } from './show-users/show-users.component';
+import { ScanComponent } from './scan/scan.component';
 // import { AuthGuardService } from './services/auth/auth-guard.service';
 
 const routes: Routes = [
@@ -56,6 +59,21 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule),
+    // canActivate: [AuthGuardService],
+  },
+  {
+    path: 'addnewuser',
+    component: AddNewUserComponent,
+    // canActivate: [AuthGuardService],
+  },
+  {
+    path: 'showusers',
+    component: ShowUsersComponent,
+    // canActivate: [AuthGuardService],
+  },
+  {
+    path: 'scan',
+    component: ScanComponent,
     // canActivate: [AuthGuardService],
   },
 ];

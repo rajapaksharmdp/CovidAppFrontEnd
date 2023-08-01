@@ -2,7 +2,7 @@ export class User {
   _id!: string;
   first_name!: string;
   last_name!: string;
-  nic!: string;
+  email!: string;
   primarynic!: string;
   dob!: Date;
   phone!: string;

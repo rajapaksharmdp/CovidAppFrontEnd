@@ -25,11 +25,15 @@
 
     <ion-card-content >
       <div class="signin-btns">
-        <ion-button size="medium" fill="solid" shape="round" class="login-btns" (click)="navigate()">Verify Me </ion-button>
+        <ion-button size="medium" fill="solid" shape="round" class="login-btns" [routerLink]="['/addnewuser']">Add User</ion-button>
+       
+      </div>
+      <div class="signin-btns">
+        <ion-button size="medium" fill="solid" shape="round" class="login-btns" [routerLink]="['/showusers']">Show Users</ion-button>
        
       </div>
       <div class="signin-btns" >
-        <ion-button *ngIf="this.userRole !=='user'" size="medium" fill="solid" shape="round" class="login-btns" [routerLink]="['/verifycertificate']">Scan Me </ion-button>
+        <ion-button *ngIf="this.userRole !=='user'" size="medium" fill="solid" shape="round" class="login-btns" [routerLink]="['/scan']">Scan User</ion-button>
       </div>
     </ion-card-content>
 

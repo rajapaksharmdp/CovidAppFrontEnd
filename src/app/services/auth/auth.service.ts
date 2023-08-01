@@ -6,9 +6,9 @@ import { Storage } from '@ionic/storage';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-// const baseUrl = 'http://localhost:5000';
+const baseUrl = 'http://localhost:5000/auth';
 // const baseUrl = 'https://lk-safe.herokuapp.com/auth';
-const baseUrl = 'https://setuinfo.kln.ac.lk/auth';
+// const baseUrl = 'https://setuinfo.kln.ac.lk/auth';
 
 
 

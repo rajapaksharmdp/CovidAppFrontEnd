@@ -48,9 +48,9 @@ export class HomePage {
 
   
 
-  navigate() {
-    // this.navController.navigateForward(['/scan']);
+  // navigate() {
+  //   // this.navController.navigateForward(['/scan']);
  
-    this.router.navigate(['/scan']);
-  }
+  //   this.router.navigate(['/addnewuser']);
+  // }
 }
