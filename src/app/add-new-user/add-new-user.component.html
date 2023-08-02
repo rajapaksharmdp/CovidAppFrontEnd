@@ -13,63 +13,95 @@
     <ion-title>Add User</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<br>
 <ion-content>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <!-- Step 1: Personal Information -->
     <div *ngIf="currentStep === 1">
+      <h3 style="color: green;  font-weight: bold; text-align: center;">Step 1</h3>
       <ion-item>
-        <ion-label>First Name</ion-label>
+        <ion-label style="color: dimgrey;">First Name :</ion-label>
         <ion-input formControlName="first_name" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Last Name</ion-label>
+        <ion-label style="color: dimgrey;">Last Name :</ion-label>
         <ion-input formControlName="last_name" required></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label style="color: dimgrey;">NIC :</ion-label>
+        <ion-input formControlName="nic" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color: dimgrey;">Date of Birth :</ion-label>
+        <ion-input formControlName="dob" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color: dimgrey;">Phone :</ion-label>
+        <ion-input formControlName="phone" required></ion-input>
+      </ion-item>
+
+      <!-- Image capture button -->
+    <ion-button (click)="takePicture()">Capture Image</ion-button>
+
+    <!-- Display the captured image -->
+    <ion-img [src]="capturedImage" *ngIf="capturedImage"></ion-img>
+      
 
       <ion-button expand="full" (click)="nextStep()">Next</ion-button>
     </div>
 
     <!-- Step 2: Contact Information -->
     <div *ngIf="currentStep === 2">
+      <h3 style="color: green;  font-weight: bold; text-align: center;">Step 2</h3>
+      
       <ion-item>
-        <ion-label>NIC</ion-label>
-        <ion-input formControlName="nic" required></ion-input>
+        <ion-label style="color: dimgrey;">Address 1 :</ion-label>
+        <ion-input formControlName="address1" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Date of Birth</ion-label>
-        <ion-input formControlName="dob" required></ion-input>
+        <ion-label style="color: dimgrey;">Address 2 :</ion-label>
+        <ion-input formControlName="address2"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Phone</ion-label>
-        <ion-input formControlName="phone" required></ion-input>
+        <ion-label style="color: dimgrey;">Town :</ion-label>
+        <ion-input formControlName="town" required></ion-input>
       </ion-item>
-
+      <ion-item>
+        <ion-label style="color: dimgrey;">District :</ion-label>
+        <ion-input formControlName="district" required></ion-input>
+      </ion-item>
       <ion-button expand="full" (click)="prevStep()">Previous</ion-button>
       <ion-button expand="full" (click)="nextStep()">Next</ion-button>
     </div>
 
     <!-- Step 3: Address and Dose Information -->
     <div *ngIf="currentStep === 3">
-      <ion-item>
-        <ion-label>Address 1</ion-label>
-        <ion-input formControlName="address1" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Address 2</ion-label>
-        <ion-input formControlName="address2"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Town</ion-label>
-        <ion-input formControlName="town" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>District</ion-label>
-        <ion-input formControlName="district" required></ion-input>
-      </ion-item>
+      <h3 style="color: green;  font-weight: bold; text-align: center;">Step 3</h3>
 
-      <!-- Add dose1, Dose1_date, dose2, Dose2_date, dose3, Dose3_date fields -->
-      <!-- ... -->
+      <ion-item>
+        <ion-label style="color: dimgrey;">Dose 1 :</ion-label>
+        <ion-input formControlName="dose1" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color: dimgrey;">Dose 1 Date :</ion-label>
+        <ion-input formControlName="Dose1_date" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color: dimgrey;">Dose 2 :</ion-label>
+        <ion-input formControlName="dose2" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color: dimgrey;">Dose 2 Date :</ion-label>
+        <ion-input formControlName="Dose2_date" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color: dimgrey;">Dose 3 :</ion-label>
+        <ion-input formControlName="dose3" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="color: dimgrey;">Dose 3 Date :</ion-label>
+        <ion-input formControlName="Dose3_date" required></ion-input>
+      </ion-item>
 
       <ion-button expand="full" (click)="prevStep()">Previous</ion-button>
       <ion-button expand="full" type="submit">Save User</ion-button>

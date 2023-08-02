@@ -15,6 +15,6 @@ export class User {
     Dose2_date!: Date;
     dose3!: string;
     Dose3_date!: Date;
-    
+    image!: string; 
   }
   
