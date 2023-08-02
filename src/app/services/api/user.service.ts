@@ -13,6 +13,8 @@ const baseUrl = 'https://covidappsl-659099c3f326.herokuapp.com/api';
 })
 export class UserService {
 
+  user: any = {}; // Empty object to store user data
+  
   constructor(private http: HttpClient) { }
 
 

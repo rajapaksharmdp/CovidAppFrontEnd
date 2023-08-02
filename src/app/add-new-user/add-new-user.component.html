@@ -15,7 +15,66 @@
 </ion-header>
 
 <ion-content>
-  
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <!-- Step 1: Personal Information -->
+    <div *ngIf="currentStep === 1">
+      <ion-item>
+        <ion-label>First Name</ion-label>
+        <ion-input formControlName="first_name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Last Name</ion-label>
+        <ion-input formControlName="last_name" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" (click)="nextStep()">Next</ion-button>
+    </div>
+
+    <!-- Step 2: Contact Information -->
+    <div *ngIf="currentStep === 2">
+      <ion-item>
+        <ion-label>NIC</ion-label>
+        <ion-input formControlName="nic" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Date of Birth</ion-label>
+        <ion-input formControlName="dob" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Phone</ion-label>
+        <ion-input formControlName="phone" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" (click)="prevStep()">Previous</ion-button>
+      <ion-button expand="full" (click)="nextStep()">Next</ion-button>
+    </div>
+
+    <!-- Step 3: Address and Dose Information -->
+    <div *ngIf="currentStep === 3">
+      <ion-item>
+        <ion-label>Address 1</ion-label>
+        <ion-input formControlName="address1" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Address 2</ion-label>
+        <ion-input formControlName="address2"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Town</ion-label>
+        <ion-input formControlName="town" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>District</ion-label>
+        <ion-input formControlName="district" required></ion-input>
+      </ion-item>
+
+      <!-- Add dose1, Dose1_date, dose2, Dose2_date, dose3, Dose3_date fields -->
+      <!-- ... -->
+
+      <ion-button expand="full" (click)="prevStep()">Previous</ion-button>
+      <ion-button expand="full" type="submit">Save User</ion-button>
+    </div>
+  </form>
 </ion-content>
 
 
@@ -23,9 +82,9 @@
 <ion-footer no-border text-center>
   <ion-toolbar>
     <ion-buttons class="footerbtns">
-      <ion-button  icon-only clear color="success">  <ion-icon style="font-size: 30px;" ios="home-outline" md="home-outline"></ion-icon></ion-button>
+      <ion-button [routerLink]="['/home']" icon-only clear color="success">  <ion-icon style="font-size: 30px;" ios="home-outline" md="home-outline"></ion-icon></ion-button>
       <!-- <ion-button  icon-only clear color="success"><ion-icon style="font-size: 40px;"  ios="add-circle-outline" md="add-circle-outline"></ion-icon></ion-button> -->
-      <ion-button  icon-only clear color="success">  <ion-icon style="font-size: 35px;" ios="information-outline" md="information-outline"></ion-icon></ion-button>
+      <ion-button [routerLink]="['/about']" icon-only clear color="success">  <ion-icon style="font-size: 35px;" ios="information-outline" md="information-outline"></ion-icon></ion-button>
     </ion-buttons>
 
   </ion-toolbar>
